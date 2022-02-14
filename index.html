@@ -6,24 +6,31 @@
   </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script>
-    const root = document.getElementById("root");
-    const h3 = React.createElement(
-      "h3",
-      {
-        onmouseenter: () => consloe.log("mouse enter"),
-      },
-      "this is span !"
-    );
-    const btn0 = React.createElement(
-      "button",
-      {
-        onClick: () => console.log("clecked"),
-      },
-      "Click me"
-    );
-    const container = React.createElement("div", null, [h3, btn0]);
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    ReactDOM.render(container, root);
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("enter")}>
+          Hello title
+        </h3>
+      );
+    }
+    function Btn01() {
+      return (
+        <button id="button01" onClick={() => console.log("clecked")}>
+          Click me
+        </button>
+      );
+    }
+
+    const Container = (
+      <div>
+        <Title />
+        <Btn01 />
+      </div>
+    );
+    ReactDOM.render(Container, root);
   </script>
 </html>
