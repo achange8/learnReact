@@ -10,9 +10,18 @@
   <script type="text/babel">
     const root = document.getElementById("root");
     function App() {
-      const [minutes, setMinutes] = React.useState(0);
+      const [amount, setAmount] = React.useState();
+      const [flip, setfilp] = React.useState(false);
+
       function onChange(event) {
-        setMinutes(event.target.value);
+        setAmount(event.target.value);
+      }
+      function reset() {
+        setAmount(0);
+      }
+      function onflip() {
+        reset();
+        setfilp((current) => !current);
       }
       return (
         <div>
@@ -20,22 +29,30 @@
           <div>
             {" "}
             <input
-              value={minutes}
+              value={flip ? amount * 60 : amount}
               id="Minutes"
               placeholder="Minutes"
               type="number"
               onChange={onChange}
+              disabled={flip === true}
+            />
+            <label htmlFor="Minutes">Min</label>
+          </div>
+
+          <div>
+            <label htmlFor="Hours">Hours</label>
+            <input
+              value={flip ? amount : amount / 60}
+              id="Hours"
+              placeholder="Hours"
+              type="number"
+              onChange={onChange}
+              disabled={flip === false}
             />
           </div>
-          <label htmlFor="Minutes">Min</label>
 
-          <label htmlFor="Hours">Hours</label>
-          <input
-            value={minutes / 60}
-            id="Hours"
-            placeholder="Hours"
-            type="number"
-          />
+          <button onClick={reset}>Reset</button>
+          <button onClick={onflip}>Filp</button>
         </div>
       );
     }
