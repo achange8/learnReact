@@ -17,26 +17,26 @@
         setAmount(event.target.value);
       }
       function reset() {
-        setAmount(0);
+        setAmount();
       }
       function onflip() {
         reset();
         setfilp((current) => !current);
       }
+
       return (
         <div>
           <h1>Converter</h1>
           <div>
-            {" "}
+            <label htmlFor="Minutes">Min</label>
             <input
               value={flip ? amount * 60 : amount}
               id="Minutes"
               placeholder="Minutes"
               type="number"
               onChange={onChange}
-              disabled={flip === true}
+              disabled={flip}
             />
-            <label htmlFor="Minutes">Min</label>
           </div>
 
           <div>
@@ -47,7 +47,7 @@
               placeholder="Hours"
               type="number"
               onChange={onChange}
-              disabled={flip === false}
+              disabled={!flip}
             />
           </div>
 
